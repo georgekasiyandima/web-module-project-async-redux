@@ -1,12 +1,13 @@
 import React from 'react';
+import EuroData from './components/EuroData';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      Async Redux Project
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <div>
+            <EuroData />
+        </div>
+    );
+};
 
 export default App;
