@@ -1,30 +1,33 @@
+// src/components/EuroData.js
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../euroActions'; // Ensure the euroActions file path is correct
+import { fetchEuroData } from '../euroActions';
 
 const EuroData = () => {
-    const dispatch = useDispatch();
-    const euroData = useSelector((state) => state.euro.data);
-    const loading = useSelector((state) => state.euro.loading);
-    const error = useSelector((state) => state.euro.error);
+  const dispatch = useDispatch();
+  const euroData = useSelector((state) => state.euroData);
 
-    useEffect(() => {
-        dispatch(fetchData());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchEuroData());
+  }, [dispatch]);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
-
-    return (
+  return (
+    <div>
+      {euroData.loading && <p>Loading...</p>}
+      {euroData.error && <p>Error: {euroData.error}</p>}
+      {euroData.data && (
         <div>
-            <h1>Euro2024 Data</h1>
-            <ul>
-                {euroData.map((item) => (
-                    <li key={item.id}>{item.name}</li>
-                ))}
-            </ul>
+          <h2>Euro 2024 Data</h2>
+          {euroData.data.map((item, index) => (
+            <div key={index}>
+              <p>{item.name}</p>
+              {/* Add more data fields as necessary */}
+            </div>
+          ))}
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default EuroData;

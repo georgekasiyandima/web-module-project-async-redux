@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import euroReducer from './euroReducer';
 
 const rootReducer = combineReducers({
-    euro: euroReducer,
+    euroData: euroReducer,
 });
 
 export default rootReducer;
